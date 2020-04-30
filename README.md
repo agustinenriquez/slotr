@@ -12,6 +12,6 @@ Shift + c + 1 - clear slot 1
 
 Shift + a - clear all slots
 
-Shit + v + 1 - open new tab using url in slot 1
+Shift + v + 1 - open new tab using url in slot 1
 
 Shift + s - show slots in console
