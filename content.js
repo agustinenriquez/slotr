@@ -47,7 +47,6 @@ $(document).ready(function() {
             port.postMessage({openSlot: e.keyCode});
           } 
         }
-
       }
     }
   }).keyup(function(e) {
