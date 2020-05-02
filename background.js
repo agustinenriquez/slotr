@@ -6,7 +6,7 @@ chrome.runtime.onConnect.addListener(function(port){
     console.assert(port.name == "slotr");
     if (flag) {
         chrome.storage.sync.set({"slots": slots});
-        flag = false
+        flag = false;
     }
     port.onMessage.addListener(function(message) {
         if (message.url && message.position in slots) {
@@ -14,6 +14,17 @@ chrome.runtime.onConnect.addListener(function(port){
             port.postMessage({slots: slots});
             lastModifiedSlot = message.position;
             chrome.storage.sync.set({"slots": slots});
+            chrome.notifications.create("addUrl", {   
+                type: "basic", 
+                title: "Slotr", 
+                message: "saved url",
+                iconUrl: "plus-flat.png"
+                }, function() {
+                console.log(chrome.runtime.lastError);
+            });
+        }
+        if (message.openAll) {
+            port.postMessage({openAll: message.openAll, openSlots: slots});
         }
         if (message.emptySlot) {
             slots[lastModifiedSlot] = null;
@@ -32,7 +43,7 @@ chrome.runtime.onConnect.addListener(function(port){
         }
         if (message.showSlots) {
             chrome.storage.sync.set({"slots": slots});
-            port.postMessage({slots: slots});
+            port.postMessage({showSlots: message.showSlots, slots: slots});
         }
         if (message.openSlot) {
             chrome.storage.sync.set({"slots": slots});
