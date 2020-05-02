@@ -1,5 +1,5 @@
 # slotr
-a chrome extension to save bookmarks into slots using simple keyboard shortcuts
+a chrome extension to save temporary bookmarks into slots using simple keyboard shortcuts
 
 
 # Commands
